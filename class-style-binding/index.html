@@ -24,11 +24,24 @@
                     <li v-for="detail in details">{{detail}}</li>
                 </ul>
 
-                <div v-for="variant in variants" :key="variant.variantId">
-                      <p>{{variant.variantColor}}</p>
+                <div class="color-box"
+                     v-for="variant in variants" 
+                     :key="variant.variantId"
+                     :style="{ backgroundColor: variant.variantColor}"
+                     @mouseover="updateProduct(variant.variantImage)"
+                     >
+                      <!-- <p @mouseover="updateProduct(variant.variantImage)">{{variant.variantColor}}</p> -->
+                </div>
+
+                <div class="cart">
+                    <p>Cart {{cart}}</p>
+                    <button v-on:click="addToCart"
+                            :disabled="!instock"
+                            :class="{ disabledButton: !instock}" > Add to cart </button>
                 </div>
                 
             </div>
+            
 
         </div>
        
