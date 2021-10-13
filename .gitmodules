@@ -1,0 +1,3 @@
+[submodule "vuex_todo_manager"]
+	path = vuex_todo_manager
+	url = https://github.com/worlanyodamalie/VueLessons.git
