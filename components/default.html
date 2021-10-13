@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="message">
+            <div>
+                <h1>{{text}}</h1>
+             </div>
+             <div>
+                 <button @click="changeText" style="padding: 0.5em;margin-left: 1em;border: hidden;">Change text</button>
+             </div>
+        </div>
+        <div ref="text"> </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+     <script>
+         new Vue({
+            el: "#app",
+            data: {
+                text: "Test message"
+            },
+            methods: {
+                changeText() {
+                   this.text = "This text has been changed"
+                }
+            } ,
+            watch: {
+                text(newValue,oldValue){
+                  this.$ref.text.innerHTML = `Name has changed to ${newValue}`
+                }
+            }  
+         });
+     </script>
+</body>
+<style>
+    .message{
+       display:flex;
+       justify-content: center;
+       align-items: center; 
+    }
+</style>
+</html>

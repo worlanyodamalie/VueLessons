@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating Counter</title>
+</head>
+<body>
+    
+    <div id="app">
+        {{ parentHeader.label }}{{ parentHeader.globalCount }}
+        <hr/>
+        <rating-counter title="Ratings" v-bind:parent="parentHeader"></rating-counter>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('rating-counter' , {
+            props: ['title' , 'parent'],
+            data(){
+                return { count: 0 }
+            },
+            template: `<div>
+                          <h1> {{ title }} </h1>
+                          <button v-on:click="count--;parent.globalCount--">Thumbs Down</button>  
+                           {{ count }} 
+                          <button v-on:click="count++;parent.globalCount++"> Thumbs Up </button>
+                          </div>`
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                parentHeader: {
+                    label: "Counter is at: ",
+                    globalCount: 0
+                }
+            }
+        })
+    </script>
+</body>
+</html>
